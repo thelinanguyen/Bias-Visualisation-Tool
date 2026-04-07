@@ -1,0 +1,48 @@
+### --- Python Environment --- ###
+# Ignore the virtual environment (everyone should create their own)
+venv/
+.venv/
+env/
+bin/
+lib64/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+### --- Data & Large Files --- ###
+# In an ML project, we don't store raw data in Git
+data/raw/
+data/processed/
+*.csv
+*.json
+*.parquet
+*.zip
+*.tar.gz
+
+# Ignore trained models/weights (usually too large)
+models/
+*.h5
+*.pkl
+*.pth
+*.onnx
+
+### --- Jupyter Notebooks --- ###
+# Temporary files created by notebooks
+.ipynb_checkpoints/
+.virtual_envs/
+
+### --- IDE & OS Junk --- ###
+# VS Code
+.vscode/
+# PyCharm
+.idea/
+# macOS system files
+.DS_Store
+# Windows system files
+Thumbs.db
+
+### --- Secret/Local Config --- ###
+# Credentials or local settings
+.env
