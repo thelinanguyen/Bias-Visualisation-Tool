@@ -24,7 +24,7 @@ def plot_confusion_matrix_comparison(y_test, y_pred_base, y_pred_custom):
         z=cm_custom, x=labels, y=labels, 
         colorscale='Reds', showscale=False
     )
-    fig_custom.update_layout(title="Biased Model", xaxis_title="Predicted", yaxis_title="Actual", width=300, height=300)
+    fig_custom.update_layout(title="New Model", xaxis_title="Predicted", yaxis_title="Actual", width=300, height=300)
 
     return fig_base, fig_custom
   

@@ -12,7 +12,6 @@ __pycache__/
 *$py.class
 
 ### --- Data & Large Files --- ###
-# In an ML project, we don't store raw data in Git
 data/raw/
 data/processed/
 *.csv

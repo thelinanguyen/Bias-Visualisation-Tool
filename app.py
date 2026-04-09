@@ -166,12 +166,21 @@ with col_results:
             # --- D. DISPLAY GROUP METRICS (Tables) ---
             st.subheader("Group Performance Metrics")
             
+            # Define specific formatting for each column
+            format_rules = {
+                "Accuracy": "{:.1%}",
+                "Precision": "{:.1%}",
+                "Recall": "{:.1%}",
+                "F1-Score": "{:.1%}",
+                "Samples": "{:.0f}" 
+            }
+            
             tab1, tab2 = st.tabs(["New Model Results", "Baseline Model Results"])
+
             with tab1:
-                # Format the dataframe to look like percentages
-                st.dataframe(biased_group.style.format("{:.1%}", subset=["Accuracy", "Precision", "Recall", "F1-Score"]))
+                st.dataframe(biased_group.style.format(format_rules))
             with tab2:
-                st.dataframe(base_group.style.format("{:.1%}", subset=["Accuracy", "Precision", "Recall", "F1-Score"]))
+                st.dataframe(base_group.style.format(format_rules))
 
             st.divider()
 
