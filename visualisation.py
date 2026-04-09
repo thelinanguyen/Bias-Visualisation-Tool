@@ -1,8 +1,9 @@
+# This file contains the visualization functions for the Streamlit app, including confusion matrix comparisons, feature distributions, and group metric comparisons.
+
 import plotly.figure_factory as ff
 from sklearn.metrics import confusion_matrix
 import plotly.express as px
 import pandas as pd
-import plotly.express as px
 
 
 def plot_confusion_matrix_comparison(y_test, y_pred_base, y_pred_custom):

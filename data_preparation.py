@@ -1,3 +1,5 @@
+# This file contains the data loading, cleaning, encoding, and splitting logic for the Adult Census Dataset.
+
 from ucimlrepo import fetch_ucirepo 
 import pandas as pd
 import numpy as np

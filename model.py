@@ -1,3 +1,5 @@
+# This file contains the core logic for training the model and evaluating its performance and bias across protected attributes.
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -35,8 +37,6 @@ def evaluate_model_bias(model_pipeline, X_test_custom, y_test, X_test_original, 
     
     # Model trained using the modified data
     y_pred = model_pipeline.predict(X_test_custom)
-    
-    results = {}
     
     # CALCULATE OVERALL METRICS
     global_metrics = {

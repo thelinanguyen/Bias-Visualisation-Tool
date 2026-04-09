@@ -1,3 +1,5 @@
+# This is the main Streamlit app file for Dataset Bias Diagnostic Tool. It loads the data, trains the baseline model, and provides the interactive UI for users to apply biases and compare results.
+
 import streamlit as st
 import pandas as pd
 import data_preparation as dp
@@ -48,13 +50,15 @@ with st.expander("📊 Explore the Original Dataset", expanded=False):
     # 2. The Data Table (Showing only a sample so it doesn't lag)
     st.subheader("Raw Data Sample (First 100 Rows)")
     st.dataframe(raw_df.head(100), width="stretch")
+    
+    #3. Dataset Source Reference
+    st.markdown("More details about the dataset used: [Adult Census Income (UCI Machine Learning Repository)](https://archive.ics.uci.edu/dataset/2/adult)")
 
 st.divider()
 
 # ==========================================
 # FRONTEND: UI LAYOUT
 # ==========================================
-
 
 # Create two main columns: Left (Controls - 30% width), Right (Results - 70% width)
 col_controls, col_results = st.columns([1, 2.5])
