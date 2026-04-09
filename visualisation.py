@@ -1,6 +1,8 @@
 import plotly.figure_factory as ff
 from sklearn.metrics import confusion_matrix
 import plotly.express as px
+import pandas as pd
+import plotly.express as px
 
 
 def plot_confusion_matrix_comparison(y_test, y_pred_base, y_pred_custom):
@@ -41,7 +43,41 @@ def plot_feature_distribution(df, column_name):
         color="income",
         barmode="group",
         title=f"Distribution of {column_name} by Income",
-        color_discrete_sequence=["#EF553B", "#636EFA"] # Red and Blue
+        color_discrete_sequence=["#EF553B", "#636EFA"] 
     )
     fig.update_layout(yaxis_title="Number of People", xaxis_title=column_name.capitalize())
+    return fig
+
+def plot_group_metrics(base_group, biased_group, metric="Accuracy"):
+    """
+    Takes the baseline and biased group metrics, shapes them into a single dataframe,
+    and returns a grouped bar chart for a specific metric.
+    """
+    # 1. Prepare Baseline Data
+    df_base = base_group[[metric]].reset_index()
+    df_base.columns = ["Demographic Group", "Score"]
+    df_base["Model"] = "Baseline"
+
+    # 2. Prepare New Model Data
+    df_biased = biased_group[[metric]].reset_index()
+    df_biased.columns = ["Demographic Group", "Score"]
+    df_biased["Model"] = "New Model"
+
+    # 3. Combine them
+    df_combined = pd.concat([df_base, df_biased])
+
+    # 4. Create the Grouped Bar Chart
+    fig = px.bar(
+        df_combined,
+        x="Demographic Group",
+        y="Score",
+        color="Model",
+        barmode="group",
+        title=f"{metric} Comparison by Demographic Group",
+        color_discrete_sequence=["#636EFA", "#EF553B"] # Blue for Baseline, Red for New Model
+    )
+    
+    # Format the Y-axis as percentages
+    fig.update_layout(yaxis_tickformat=".1%", yaxis_title=f"{metric} Score")
+    
     return fig
