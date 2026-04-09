@@ -78,6 +78,17 @@ def plot_group_metrics(base_group, biased_group, metric="Accuracy"):
     )
     
     # Format the Y-axis as percentages
-    fig.update_layout(yaxis_tickformat=".1%", yaxis_title=f"{metric} Score")
+    if metric == "MCC":
+        fig.update_layout(
+            yaxis_tickformat=".3f", 
+            yaxis_title="MCC Score",
+            yaxis_range=[-1, 1]  # MCC spans from -1 to 1
+        )
+    else:
+        fig.update_layout(
+            yaxis_tickformat=".1%", 
+            yaxis_title=f"{metric} Score",
+            yaxis_range=[0, 1]   # Standard metrics span 0 to 100%
+        )
     
     return fig
