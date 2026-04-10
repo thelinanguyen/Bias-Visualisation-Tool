@@ -6,7 +6,7 @@ import data_preparation as dp
 import model as md
 import visualisation as vis
 
-# 1. Page Configuration (Must be the first Streamlit command)
+# Page Configuration 
 st.set_page_config(page_title="Bias Dashboard", layout="wide")
 
 # ==========================================
@@ -35,7 +35,7 @@ base_global, base_group = get_baseline_metrics(baseline_model, X_test, y_test, X
 st.title("Dataset Bias Diagnostic Tool")
 
 # ==========================================
-# NEW: DATA EXPLORER EXPANDER
+# DATA EXPLORER EXPANDER
 # ==========================================
 with st.expander("📊 Explore the Original Dataset", expanded=False):
     
@@ -158,7 +158,7 @@ with col_results:
         biased_group = st.session_state['biased_group']
         y_pred_biased = st.session_state['y_pred_biased']
 
-        # --- B. DISPLAY TRAINING DATA CHANGES ---
+        # ---  DISPLAY TRAINING DATA CHANGES ---
         st.info(
             "🎓 **Training Data Used:**  \n"
             f"The Baseline model was trained on {len(X_train):,} samples.  \n"
@@ -166,7 +166,7 @@ with col_results:
             f"Both models were evaluated on the same untouched test set ({len(X_test):,} samples) for a fair comparison."
         )
 
-        # --- C. DISPLAY GLOBAL METRICS (KPI Cards) ---
+        # --- DISPLAY GLOBAL METRICS (KPI Cards) ---
         st.subheader(
             "Global Performance Metrics", 
             help="**How to read MCC:** The Matthews Correlation Coefficient ranges from **-1 to +1**. \n\n* **+1.0** = Perfect prediction \n* **0.0** = Random guessing \n* **-1.0** = Total disagreement between predictions and actuals"
@@ -198,7 +198,7 @@ with col_results:
 
         st.divider()
 
-        # --- D. DISPLAY GROUP METRICS (Tables) ---
+        # --- DISPLAY GROUP METRICS (Tables) ---
         st.subheader("Group Performance Metrics")
         
         st.markdown("**Change from Baseline (New - Baseline)**")
@@ -256,7 +256,7 @@ with col_results:
         
         st.divider()
 
-        # --- D.2 VISUALIZE GROUP METRICS ---
+        # ---VISUALIZE GROUP METRICS ---
         st.subheader("Visual Metric Comparison")
 
         if metrics_only:
@@ -275,7 +275,7 @@ with col_results:
         
         st.divider()
 
-        # --- E. DISPLAY CONFUSION MATRICES ---
+        # ---  DISPLAY CONFUSION MATRICES ---
         st.subheader("Confusion Matrix Comparison")
         
         y_pred_base = baseline_model.predict(X_test)
