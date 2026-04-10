@@ -1,0 +1,18 @@
+# Web Framework
+streamlit
+
+# Data Manipulation
+pandas
+numpy
+
+# Machine Learning
+scikit-learn
+
+# Visualization
+plotly
+
+# Data Sourcing
+ucimlrepo
+
+# Code Quality 
+ruff

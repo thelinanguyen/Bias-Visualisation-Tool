@@ -10,6 +10,7 @@ lib64/
 __pycache__/
 *.py[cod]
 *$py.class
+.ruff_cache/
 
 ### --- Data & Large Files --- ###
 data/raw/
