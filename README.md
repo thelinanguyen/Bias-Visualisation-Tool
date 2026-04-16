@@ -5,6 +5,12 @@ This repository contains an interactive visualization dashboard designed to assi
 
 The tool compares a baseline model against a custom-biased model using standard ML evaluations alongside metrics specifically suited for imbalanced data, such as the Matthews Correlation Coefficient (MCC).
 
+<img width="2559" height="1296" alt="image" src="https://github.com/user-attachments/assets/4cf7fdb0-5170-4d90-a26e-96c90875f58e" />
+<img width="2549" height="1336" alt="image" src="https://github.com/user-attachments/assets/8c0ddd11-5fa0-4c3e-9680-dfb956111ae2" />
+<img width="2545" height="1312" alt="image" src="https://github.com/user-attachments/assets/56a695cd-c0f5-4ec9-a933-d462f2e428f5" />
+<img width="2545" height="1318" alt="image" src="https://github.com/user-attachments/assets/1937ddd9-eae2-4f1a-ae0a-cce6eb632b6d" />
+
+
 ## Project Architecture
 The project follows a modular design, separating the frontend UI from the backend logic:
 
@@ -37,6 +43,7 @@ The application will automatically open in your default web browser.
 ## Data Source
 This project utilizes the Adult Census Income dataset sourced from the UCI Machine Learning Repository.
 https://archive.ics.uci.edu/dataset/2/adult
+
 
 
 
