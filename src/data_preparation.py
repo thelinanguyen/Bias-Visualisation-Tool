@@ -58,11 +58,8 @@ def get_clean_census_data():
   # Fetch the data
   df_combined = _fetch_adult_raw_data()
 
-  # Keep feature split explicit for the next processing steps
-  X = df_combined.drop(columns=['income'])
-
   # Handle the "?" symbol (the missing values)
-  X = X.replace('?', np.nan)
+  df_combined = df_combined.replace('?', np.nan)
   df_cleaned = df_combined.dropna()
 
   # Remove Redundant/Irrelevant Columns
@@ -78,7 +75,7 @@ def get_clean_census_data():
   _CACHE_DIR.mkdir(parents=True, exist_ok=True)
   df_cleaned.to_csv(_CACHE_PATH, index=False)
 
-  # Split back into X and y
+  # Split back into X and y (features and target)
   X_final = df_cleaned.drop(columns=['income'])
   y_final = df_cleaned['income']
 
