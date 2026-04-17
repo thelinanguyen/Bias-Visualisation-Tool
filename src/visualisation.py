@@ -44,7 +44,7 @@ def plot_feature_distribution(df, column_name):
         color="income",
         barmode="group",
         title=f"Distribution of {column_name} by Income",
-        color_discrete_sequence=["#EF553B", "#636EFA"] 
+        color_discrete_sequence=["#C2BCBB", "#636EFA"] 
     )
     fig.update_layout(yaxis_title="Number of People", xaxis_title=column_name.capitalize())
     return fig

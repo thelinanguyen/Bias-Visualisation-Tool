@@ -69,11 +69,24 @@ col_controls, col_results = st.columns([1, 2.5])
 with col_controls:
     st.header("1. Dataset Controls")
     
-    # Ommitted Variable Bias Controls (Column Dropping) #
+    # Ommitted Variable Bias Controls (Column Dropping)
     st.subheader("Omitted Variable Bias (Columns)")
+    
+    # 1. Get base features from the raw dataframe, excluding the target and base protected demographics
+    safe_base_features = [col for col in raw_df.columns if col not in ['income', 'sex', 'race']]
+    
+    # 2. Show the user the clean, original feature names
+    selected_base_features_to_drop = st.multiselect(
+        "Hide Features from Model:", 
+        options=safe_base_features, 
+        default=["education-num"]
+    )
+    
+    # ---------------------
     # Let the user pick any column except the protected attributes (to avoid crashing the app)
-    safe_cols = [c for c in X_train.columns if c not in protected_attributes]
-    cols_to_drop = st.multiselect("Hide Features from Model:", options=safe_cols, default=["education-num"])
+    # safe_cols = [c for c in X_train.columns if c not in protected_attributes]
+    # cols_to_drop = st.multiselect("Hide Features from Model:", options=safe_cols, default=["education-num"])
+    # ------------------------
 
     # Representation Bias #
     st.subheader("Representation Bias (Rows)")
@@ -128,10 +141,19 @@ with col_results:
                     X_train_custom = X_train_custom.drop(drop_indices)
                     y_train_custom = y_train_custom.drop(drop_indices)
                     st.toast(f"🗑️ Dropped {num_to_drop} rows matching: {bias_group} ({bias_condition})")
+            # Convert selected base features into their actual encoded column names
+            cols_to_drop = []
+            for base_feat in selected_base_features_to_drop:
+                # Find exact matches (for numeric features) OR one-hot encoded matches (for categorical features)
+                matched_cols = [c for c in X_train.columns if c == base_feat or c.startswith(base_feat + "_")]
+                cols_to_drop.extend(matched_cols)
 
             if len(cols_to_drop) > 0:
                 X_train_custom = X_train_custom.drop(columns=cols_to_drop)
                 X_test_custom = X_test_custom.drop(columns=cols_to_drop)
+                
+                # Add a quick notification
+                st.toast(f"🗑️ Dropped {len(cols_to_drop)} encoded columns associated with your selection.")
 
             # Train and evaluate
             biased_model = md.train_model(X_train_custom, y_train_custom)

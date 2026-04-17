@@ -33,15 +33,6 @@ def _fetch_adult_raw_data():
       if attempt < 2:
         time.sleep(1.5 * (attempt + 1))
 
-  # Fallback source: OpenML mirror.
-  try:
-    openml = fetch_openml(name="adult", version=2, as_frame=True)
-    X = openml.data.copy()
-    y = openml.target.copy()
-    return pd.concat([X, y.rename("income")], axis=1)
-  except Exception as err:
-    last_error = err
-
   # Final fallback: most recent successful cached copy.
   if _CACHE_PATH.exists():
     return pd.read_csv(_CACHE_PATH)
