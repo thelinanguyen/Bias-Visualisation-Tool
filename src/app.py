@@ -102,7 +102,7 @@ with col_controls:
     )
     
     # 3. Choose the severity
-    bias_percentage = st.slider("Percentage of group to remove:", min_value=0, max_value=90, value=0, step=10)
+    bias_percentage = st.slider("Percentage of group to remove:", min_value=0, max_value=100, value=0, step=10)
     
     run_button = st.button("Train New Model", type="primary", width="stretch")
 
