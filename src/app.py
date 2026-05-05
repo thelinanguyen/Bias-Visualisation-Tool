@@ -37,10 +37,11 @@ st.title("Dataset Bias Diagnostic Tool")
 # ==========================================
 # DATA EXPLORER EXPANDER
 # ==========================================
-with st.expander("📊 Explore the Original Dataset", expanded=False):
+st.header("📊 Original Dataset")
+
+with st.expander("Explore ", expanded=False):
     
     # 1. The Interactive Histogram
-    # We remove 'income' from the dropdown options so they don't plot income vs income
     feature_options = [col for col in raw_df.columns if col != 'income']
     selected_feature = st.selectbox("Select a feature to visualize:", feature_options, index=0)
     
