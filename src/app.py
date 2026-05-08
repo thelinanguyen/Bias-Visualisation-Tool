@@ -114,11 +114,10 @@ with col_results:
     st.header("2. Model Comparison")
     
     # --- 1. THE TRAINING PHASE ---
-    # We only run the heavy training process when the button is actually clicked
+    # Only run the heavy training process when the button is actually clicked
     if run_button:
         with st.spinner("Applying biases and training custom model..."):
             
-            # ... (KEEP ALL YOUR EXISTING FILTERING LOGIC HERE: A. APPLY USER FILTERS) ...
             X_train_custom = X_train.copy()
             y_train_custom = y_train.copy()
             X_test_custom = X_test.copy()
@@ -171,12 +170,12 @@ with col_results:
 
 
     # --- 2. THE DISPLAY PHASE ---
-    # Check if we have trained data saved in memory
+    # Check if trained data is saved in memory
     if not st.session_state.get('is_trained', False):
         st.info("👈 Adjust the dataset controls on the left and click 'Train New Model' to see the comparison.")
     
     else:
-        # Retrieve the data from memory so the radio buttons can use it without re-training!
+        # Retrieve the data from memory so the radio buttons can use it without re-training
         biased_global = st.session_state['biased_global']
         biased_group = st.session_state['biased_group']
         y_pred_biased = st.session_state['y_pred_biased']
