@@ -7,7 +7,7 @@ import model as md
 import visualisation as vis
 
 # Page Configuration 
-st.set_page_config(page_title="Bias Dashboard", layout="wide")
+st.set_page_config(page_title="Datset Bias Dashboard", layout="wide")
 
 # ==========================================
 # BACKEND: CACHE DATA & BASELINE MODEL
@@ -32,7 +32,7 @@ def get_baseline_metrics(_model, _X_test, _y_test, _X_test_original, _protected_
 base_global, base_group = get_baseline_metrics(baseline_model, X_test, y_test, X_test, protected_attributes)
 
 
-st.title("Dataset Bias Diagnostic Tool")
+st.title("Dataset Bias Visualization Tool")
 
 # ==========================================
 # DATA EXPLORER EXPANDER
